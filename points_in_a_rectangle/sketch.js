@@ -61,6 +61,7 @@ function draw(world) {
 
     for (let index = 0; index < points.length; index++) {
         const point = points[index];
+
         r.DrawCircle(point.x, point.y, 5, r.SKYBLUE);
     }
 
