@@ -17,10 +17,12 @@ function getRandomPolarCoordinate(start, end) {
 
 function getRandomPolarCoordinates(start, end, length) {
     const points = [];
+
     for (let i = 0; i < length; i++) {
         const point = getRandomPolarCoordinate(start, end);
         points.push(point);
     }
+
     return points;
 }
 
@@ -29,7 +31,9 @@ function setup() {
         width: 400,
         height: 200,
         fps: 10,
+        title: "Points Inside transilated Circle",
     };
+
     const circle = {
         x: 200,
         y: 100,
@@ -48,7 +52,7 @@ function setup() {
     );
 
     r.SetTraceLogLevel(r.LOG_NONE);
-    r.InitWindow(screen.width, screen.height, "Random Lines");
+    r.InitWindow(screen.width, screen.height, screen.title);
     r.SetTargetFPS(screen.fps);
 
     return { screen, polarCoords, circle };
@@ -74,11 +78,10 @@ function draw(world) {
 
     r.DrawCircleLines(circle.x, circle.y, circle.radius, r.WHITE);
 
-    for (let index = 0; index < polarCoords.length; index++) {
-        const polarCoord = polarCoords[index];
+    for (const polarCoord of polarCoords) {
         const cartisian = convertPolarToCartisian(circle, polarCoord);
 
-        r.DrawCircle(cartisian.x, cartisian.y, 5, r.SKYBLUE);
+        r.DrawCircleV(cartisian, 5, r.SKYBLUE);
     }
 
     r.EndDrawing();
