@@ -1,8 +1,9 @@
 const r = require("raylib");
 const m = require("./math");
 
-function drawBar(bar) {
+function drawBar(bar, text) {
     r.DrawRectangleRec(bar, r.DARKBLUE);
+    r.DrawText(`${text}`, bar.x, bar.y - 20, 20, r.WHITE);
 }
 
 function findYcoordinate(currentHeight, height, size) {
@@ -20,13 +21,12 @@ function createBar(screen, table, maxHeight, currentHeight, i) {
 }
 
 function draw(screen, table, maxHeight, currentHeight) {
-    for (i = 0; i < table.length; i++) {
-        const bar = createBar(screen, table, maxHeight, currentHeight, i);
-        drawBar(bar);
+    for (let index = 0; index < table.length; index++) {
+        const bar = createBar(screen, table, maxHeight, currentHeight, index);
+        drawBar(bar, table[index]);
     }
 }
 
 module.exports = {
     draw,
-    findYcoordinate,
 };
