@@ -7,8 +7,8 @@ function running() {
 function getRandomFractions(length) {
     const fractions = [];
     for (let i = 0; i < length; i++) {
-        const ab = Math.random();
-        const ac = Math.random();
+        const ab = 1 - Math.random() * Math.random();
+        const ac = 1 - Math.random() * Math.random();
 
         fractions.push({ ab, ac });
     }
@@ -33,8 +33,8 @@ function setup() {
         ac: r.Vector2Subtract(point.c, point.a),
     };
 
-    const fractions = getRandomFractions(10000);
-
+    const fractions = getRandomFractions(1000);
+    console.log(fractions);
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(screen.width, screen.height, "Random Lines");
     r.SetTargetFPS(screen.fps);
