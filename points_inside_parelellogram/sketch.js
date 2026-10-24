@@ -33,8 +33,8 @@ function setup() {
         ac: r.Vector2Subtract(point.c, point.a),
     };
 
-    const fractions = getRandomFractions(1000);
-    console.log(fractions);
+    const fractions = getRandomFractions(10000);
+
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(screen.width, screen.height, "Random Lines");
     r.SetTargetFPS(screen.fps);

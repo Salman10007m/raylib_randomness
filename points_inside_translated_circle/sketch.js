@@ -30,7 +30,7 @@ function setup() {
     const screen = {
         width: 400,
         height: 200,
-        fps: 10,
+        fps: 60,
         title: "Points Inside transilated Circle",
     };
 
@@ -41,14 +41,14 @@ function setup() {
     };
 
     const polarRange = {
-        start: { distance: 0, angle: 0 },
-        end: { distance: circle.radius, angle: 2 * Math.PI },
+        start: { distance: 0, angle: (3 * Math.PI) / 2 },
+        end: { distance: circle.radius / 2, angle: Math.PI },
     };
 
     const polarCoords = getRandomPolarCoordinates(
         polarRange.start,
         polarRange.end,
-        200,
+        100000,
     );
 
     r.SetTraceLogLevel(r.LOG_NONE);
@@ -81,7 +81,7 @@ function draw(world) {
     for (const polarCoord of polarCoords) {
         const cartisian = convertPolarToCartisian(circle, polarCoord);
 
-        r.DrawCircleV(cartisian, 5, r.SKYBLUE);
+        r.DrawCircleV(cartisian, 1, r.SKYBLUE);
     }
 
     r.EndDrawing();

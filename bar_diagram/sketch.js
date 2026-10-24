@@ -9,7 +9,7 @@ function running() {
 function getRandomArray(length) {
     const array = [];
     for (let i = 0; i < length; i++) {
-        const value = (Math.random() + Math.random()) / 2;
+        const value = Math.random() * Math.random();
         array.push(value);
     }
 
@@ -31,10 +31,10 @@ function setup() {
     const screen = {
         width: 800,
         height: 400,
-        fps: 60,
+        fps: 5,
     };
 
-    const randomArray = getRandomArray(1000);
+    const randomArray = getRandomArray(10000);
     const frequencyTable = getFrequencyTable(randomArray);
 
     r.SetTraceLogLevel(r.LOG_NONE);
@@ -55,7 +55,7 @@ function draw(world) {
     const maxHeight = m.max(frequencyTable);
 
     r.BeginDrawing();
-    r.ClearBackground(r.BLACK);
+    // r.ClearBackground(r.BLACK);
 
     bars.draw(screen, frequencyTable, maxHeight, currentHeight);
 

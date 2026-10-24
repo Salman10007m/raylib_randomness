@@ -1,15 +1,17 @@
 function max(array) {
     let largest = -Infinity;
-    for (i = 0; i < array.length; i++) {
-        largest = Math.max(largest, array[i]);
+
+    for (const elements of array) {
+        largest = Math.max(largest, elements);
     }
+
     return largest;
 }
 
 function sum(array) {
     let sum = 0;
-    for (i = 0; i < array.length; i++) {
-        sum += array[i];
+    for (const elements of array) {
+        sum += elements;
     }
 
     return sum;

@@ -35,7 +35,7 @@ function setup() {
         x: 100,
         y: 100,
         width: 200,
-        height: 200,
+        height: 300,
     };
 
     const center = {
@@ -53,7 +53,8 @@ function setup() {
         x: rectangle.x + rectangle.width,
         y: rectangle.y + rectangle.height,
     };
-    const totalPoints = 100000;
+
+    const totalPoints = 500000;
     const points = getRandomPoints(start, end, totalPoints);
 
     r.SetTraceLogLevel(r.LOG_NONE);
@@ -109,9 +110,9 @@ function draw(world) {
     );
     r.DrawText(`total Points=${totalPoints}`, 10, 30, 20, r.WHITE);
 
-    const areaOfSquare = rectangle.width ** 2;
+    const areaOfRectangle = rectangle.width * rectangle.height;
     const areaOfCircle = Math.floor(
-        areaOfSquare * (pointsInsideCircle / totalPoints),
+        areaOfRectangle * (pointsInsideCircle / totalPoints),
     );
     const actualArea = Math.floor(Math.PI * center.radius ** 2);
 
