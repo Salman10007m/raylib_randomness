@@ -8,11 +8,25 @@ const createParticle = function (position, velocity) {
     return { position, velocity };
 };
 
+const getRandomValue = function (min, max) {
+    return Math.random() * (max - min) + min;
+};
+
+const getRandomVelocity = function () {
+    const angle = getRandomValue(0, Math.PI * 2);
+    const speed = getRandomValue(100, 300);
+
+    const x = speed * Math.cos(angle);
+    const y = speed * Math.sin(angle);
+
+    return { x, y };
+};
+
 const handleMouseInput = function (world) {
     const { particles } = world;
     if (r.IsMouseButtonPressed(r.MOUSE_BUTTON_LEFT)) {
         particles.push(
-            createParticle(r.GetMousePosition(), { x: 200, y: 200 }),
+            createParticle(r.GetMousePosition(), getRandomVelocity()),
         );
     }
 };
@@ -25,7 +39,6 @@ const setup = function () {
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(screen.width, screen.height, screen.title);
     r.SetTargetFPS(60);
-
     return { screen, particles };
 };
 
