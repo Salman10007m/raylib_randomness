@@ -8,32 +8,53 @@ const createParticle = function (position, velocity) {
     return { position, velocity };
 };
 
+const handleMouseInput = function (world) {
+    const { particles } = world;
+    if (r.IsMouseButtonPressed(r.MOUSE_BUTTON_LEFT)) {
+        particles.push(
+            createParticle(r.GetMousePosition(), { x: 200, y: 200 }),
+        );
+    }
+};
+
 const setup = function () {
     const screen = { width: 600, height: 400, title: "Particel Field" };
 
-    const particle = createParticle({ x: 300, y: 200 }, { x: 120, y: -60 });
+    const particles = [];
 
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(screen.width, screen.height, screen.title);
     r.SetTargetFPS(60);
 
-    return { screen, particle };
+    return { screen, particles };
 };
 
+const updateParticles = function (particles, dt) {
+    for (const particle of particles) {
+        particle.position.x += particle.velocity.x * dt;
+        particle.position.y += particle.velocity.y * dt;
+    }
+};
 const update = function (world) {
-    const { particle } = world;
+    handleMouseInput(world);
+    const { particles } = world;
     const dt = r.GetFrameTime();
 
-    particle.position.x += particle.velocity.x * dt;
-    particle.position.y += particle.velocity.y * dt;
+    updateParticles(particles, dt);
+};
+
+const drawParticles = function (particles) {
+    for (const particle of particles) {
+        r.DrawCircleV(particle.position, 5, r.WHITE);
+    }
 };
 
 const draw = function (world) {
-    const { particle } = world;
+    const { particles } = world;
     r.BeginDrawing();
     r.ClearBackground(r.BLACK);
 
-    r.DrawCircleV(particle.position, 5, r.WHITE);
+    drawParticles(particles);
 
     r.EndDrawing();
 };
