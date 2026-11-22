@@ -9,7 +9,7 @@ function running() {
 function getRandomArray(length) {
     const array = [];
     for (let i = 0; i < length; i++) {
-        const value = Math.random() * Math.random();
+        const value = (Math.random() + Math.random()) / 2;
         array.push(value);
     }
 

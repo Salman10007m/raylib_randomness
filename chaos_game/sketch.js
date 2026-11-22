@@ -15,9 +15,9 @@ function setup() {
         fps: 100,
     };
 
-    const A = { x: 180, y: 100 };
-    const B = { x: 320, y: 480 };
-    const C = { x: 560, y: 520 };
+    const A = { x: 200, y: 10 };
+    const B = { x: 10, y: 350 };
+    const C = { x: 390, y: 350 };
 
     const vertices = [A, B, C];
     let currentPoint = vertices[0];

@@ -12,7 +12,7 @@ function generateCirclePoints(circle) {
     const points = [];
     const center = circle.center;
     for (let radian = 0; radian < 2 * Math.PI; radian += 0.1) {
-        const distance = getRandomValue(circle.radius - 3, circle.radius + 5);
+        const distance = getRandomValue(circle.radius, circle.radius + 10);
 
         const x = center.x + distance * Math.cos(radian);
         const y = center.y + distance * Math.sin(radian);
