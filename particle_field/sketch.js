@@ -4,13 +4,14 @@ const running = function () {
     return !r.WindowShouldClose();
 };
 
+const createParticle = function (position, velocity) {
+    return { position, velocity };
+};
+
 const setup = function () {
     const screen = { width: 600, height: 400, title: "Particel Field" };
 
-    const particle = {
-        position: { x: 300, y: 200 },
-        velocity: { x: 2, y: -1 },
-    };
+    const particle = createParticle({ x: 300, y: 200 }, { x: 120, y: -60 });
 
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(screen.width, screen.height, screen.title);
@@ -21,8 +22,10 @@ const setup = function () {
 
 const update = function (world) {
     const { particle } = world;
-    particle.position.x += particle.velocity.x;
-    particle.position.y += particle.velocity.y;
+    const dt = r.GetFrameTime();
+
+    particle.position.x += particle.velocity.x * dt;
+    particle.position.y += particle.velocity.y * dt;
 };
 
 const draw = function (world) {
