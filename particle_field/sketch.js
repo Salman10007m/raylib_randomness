@@ -22,12 +22,18 @@ const getRandomVelocity = function () {
     return { x, y };
 };
 
-const handleMouseInput = function (world) {
-    const { particles } = world;
-    if (r.IsMouseButtonPressed(r.MOUSE_BUTTON_LEFT)) {
+const createParticles = function (particles, limit) {
+    for (let i = 0; i < limit; i++) {
         particles.push(
             createParticle(r.GetMousePosition(), getRandomVelocity()),
         );
+    }
+};
+
+const handleMouseInput = function (world) {
+    const { particles } = world;
+    if (r.IsMouseButtonPressed(r.MOUSE_BUTTON_LEFT)) {
+        createParticles(particles, 50);
     }
 };
 
@@ -48,6 +54,7 @@ const updateParticles = function (particles, dt) {
         particle.position.y += particle.velocity.y * dt;
     }
 };
+
 const update = function (world) {
     handleMouseInput(world);
     const { particles } = world;
@@ -55,7 +62,6 @@ const update = function (world) {
 
     updateParticles(particles, dt);
 };
-
 const drawParticles = function (particles) {
     for (const particle of particles) {
         r.DrawCircleV(particle.position, 5, r.WHITE);
